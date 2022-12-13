@@ -1,35 +1,21 @@
-let buttons = document.querySelectorAll("button");
-let equalBtn = document.getElementsByClassName("equalbtn");
-let clearBtn = document.querySelector("#clear");
-let deleteBtn = document.querySelector("#del");
-let DisplayScreen = document.querySelector("#input-text");
+let results = document.querySelector("#input-text");
 
-let realTimedisplayValue = [];
+let calculate = (number) => {
+  results.value += number;
+};
 
-clearBtn.addEventListener("click", () => {
-  realTimeScreenValue = [""];
-});
+let result = () => {
+  try {
+    results.value = eval(results.value);
+  } catch (err) {
+    results.value = alert("Enter valid input");
+  }
+};
 
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    if (!btn.id.match("clear")) {
-      realTimedisplayValue.push(btn.value);
-      DisplayScreen.innerHTML = realTimedisplayValue.join("");
+function clear() {
+  results.value = "2";
+}
 
-      if (btn.classList.contains("num")) {
-        DisplayScreen.innerHTML = eval(realTimedisplayValue.join(""));
-      }
-    }
-    if (btn.id.match("erase")) {
-      realTimedisplayValue.pop();
-      DisplayScreen.innerHTML = realTimedisplayValue;
-    }
-    if (btn.id.match("evaluate")) {
-      realTimedisplayValue;
-    }
-
-    if (typeof eval(realTimeScreenValue.join("")) == "undefined") {
-      DisplayScreen.innerHTML = 0;
-    }
-  });
-});
+function del() {
+  results.value = results.value.slice(0, -1);
+}
